@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+        <title>manifestg</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <style media="screen">
+            body{padding: 10px; font-family: "Quicksand"}
+            table{padding: 5px; border: solid 1px dimgrey}
+            .do,.rc{border: solid 1px dimgrey; width:340px; height:200px; overflow: auto; font-size: 12px; white-space:pre}
+            .rc{width: 345px}#vc1,#vc2,#vc3,#evc1,#evc2,#evc3{width: 20px}
+            #n,#d,#vc1,#vc2,#vc3,#evc1,#evc2,#evc3,#sel{background-color: #292f33; color: #e0e8ed; border: solid 1px dimgrey}
+            #ge,#co{width: 345px; padding: 10px; color: #e0e8ed; background-color:  #0e1518; border: solid 1px dimgrey}#ge:hover{background-color: #292f33}#co:hover{background-color: #292f33}
+        </style>
+    </head>
+    <body class="bcolor3">
+        <h3>MCBE manifest generator</h3>
+        <table><tbody><tr><td><label for="nr">name</label></td><td>: <input type="text" name="nr" id="n"><br></td></tr><tr><td><label for="des">description</label></td><td>: <input type="text" name="des" id="d">
+        <br></td></tr><tr><td><label for="ver">version</label></td><td>: <input type="text" name="verc1" id="vc1" maxlength="2">,<input type="text" name="verc2" id="vc2" maxlength="2">,<input type="text" name="verc3" id="vc3" maxlength="2">
+        <br></td></tr><tr><td><label for="mver">min engine version</label></td><td>: <input type="text" name="mver" id="evc1" maxlength="2">,<input type="text" name="mver" id="evc2" maxlength="2">,<input type="text" name="mver" id="evc3" maxlength="2">
+        <br></td></tr><tr><td>type</td><td>: <select id="sel"><option value="1">resources</option><option value="2">data</option></select></td></tr></tbody>
+        </table><br>
+        <button type="button" id="ge">generate</button><br><br>
+            Result
+        <div class="rc"><code id="pv"></code></div> <button type="button" id="co" style="display:none">Copy</button>
+        <script type="text/javascript">
+            function rs4d(){return Math.random().toString(16).substr(2,4)}
+            function cuid(){return rs4d()+rs4d()+"-"+rs4d()+"-"+rs4d()+"-"+rs4d()+"-"+rs4d()+rs4d()+rs4d()}
+            ge.onclick=()=>{
+                var ve = vc1.value+", "+vc2.value+", "+vc3.value;
+                var mve = evc1.value+", "+evc2.value+", "+evc3.value;
+                var na = n.value, de = d.value, uid = cuid(), uid2 = cuid();
+                var res = sel.value=="1"?`{\n\t\"format_version\": 2,\n\t\"header\": {\n\t\t\"description\": \"${de}\",\n\t\t\"name\": \"${na}\",\n\t\t\"uuid\": \"${uid}\",\n\t\t\"version\": [${ve}],\n\t\t\"min_engine_version\": [${mve}]\n\t},\n\t\"modules\": [\n\t\t{\n\t\t\t\"description\": \"${de}\",\n\t\t\t\"type\": \"resources\",\n\t\t\t\"uuid\": \"${uid2}\",\n\t\t\t\"version\": [${ve}]\n\t\t}\n\t]\n}`:`{\n\t\"format_version\": 2,\n\t\"header\": {\n\t\t\"description\": \"${de}\",\n\t\t\"name\": \"${na}\",\n\t\t\"uuid\": \"${uid}\",\n\t\t\"version\": [${ve}],\n\t\t\"min_engine_version\": [${mve}]\n\t},\n\t\"modules\": [\n\t\t{\n\t\t\t\"description\": \"${de}\",\n\t\t\t\"type\": \"data\",\n\t\t\t\"uuid\": \"${uid2}\",\n\t\t\t\"version\": [${ve}]\n\t\t}\n\t]\n}`;
+                pv.innerHTML = res;
+                co.style.display = "block";
+                co.onclick=()=>{
+                    var mt = document.createElement("textarea");
+                    document.body.appendChild(mt);
+                    mt.value = res; mt.select();
+                    document.execCommand("copy");
+                    alert("copied to clipboard");
+                    document.body.removeChild(mt);
+                }
+            }
+        </script>
+    </body>
+</html>
