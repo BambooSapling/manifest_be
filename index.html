@@ -8,16 +8,15 @@
         <link href="https://bamboosapling.github.io/s/style.css" rel="stylesheet">
         <style media="screen">
             body{padding: 10px; font-family: "Quicksand"}
-            table{padding: 5px; border: solid 1px dimgrey}
-            .do,.rc{border: solid 1px dimgrey; width:340px; height:200px; overflow: auto; font-size: 12px; white-space:pre}
-            .rc{width: 345px}#vc1,#vc2,#vc3,#evc1,#evc2,#evc3{width: 20px}
+            table{padding: 5px; border: solid 1px dimgrey; width:100%}
+            .do,.rc{border: solid 1px dimgrey; height:200px; overflow: auto; font-size: 12px; white-space:pre}
+            .rc{width: 100%}#vc1,#vc2,#vc3,#evc1,#evc2,#evc3{width: 20px}
             #n,#d,#vc1,#vc2,#vc3,#evc1,#evc2,#evc3,#sel{background-color: #292f33; color: #e0e8ed; border: solid 1px dimgrey}
-            #ge,#co{width: 345px; padding: 10px; color: #e0e8ed; background-color:  #0e1518; border: solid 1px dimgrey}#ge:hover{background-color: #292f33}#co:hover{background-color: #292f33}
-            #pv{color:#149414}
+            #ge,#co{width: 100%; padding: 10px; color: #e0e8ed; background-color:  #0e1518; border: solid 1px dimgrey}#ge:hover{background-color: #292f33}#co:hover{background-color: #292f33}
         </style>
     </head>
     <body class="bcolor3">
-        <h3>MCBE manifest.json</h3>
+        <h3 style="text-align:center">MCBE manifest.json</h3>
         <table><tbody><tr><td><label for="nr">name</label></td><td>: <input type="text" name="nr" id="n"><br></td></tr><tr><td><label for="des">description</label></td><td>: <input type="text" name="des" id="d">
         <br></td></tr><tr><td><label for="ver">version</label></td><td>: <input type="text" name="verc1" id="vc1" maxlength="2"> <input type="text" name="verc2" id="vc2" maxlength="2"> <input type="text" name="verc3" id="vc3" maxlength="2">
         <br></td></tr><tr><td><label for="mver">min engine version</label></td><td>: <input type="text" name="mver" id="evc1" maxlength="2"> <input type="text" name="mver" id="evc2" maxlength="2"> <input type="text" name="mver" id="evc3" maxlength="2">
